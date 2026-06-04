@@ -5,15 +5,15 @@
 }
 .title_main{
 	width: 1280px;
-	height: 80px;
+	height: 140px;
 	background-color: #FFFFFF;
 	margin: 0 auto;
 	padding: 25px 30px;
 	border-radius: 28px;
 	display: flex;
 	align-items: center;
-	justify-content: flex-start;
-	gap: 100px;
+	justify-content: space-between;
+	box-sizing: border-box;
 }
 .title_main img{
 	width: 300px;
@@ -21,17 +21,109 @@
 }
 .title_a{
 	background-color: #FFFFFF;
-	padding: 10px 0;
 	display: flex;
-	gap: 150px;
+	flex: 1;
+	align-items: center;
+	justify-content: space-around;
 }
 .title_a a{
 	text-decoration: none;
 	color: #121826;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 25px;
 	background-color: #FFFFFF;
+	line-height: 1;
+	white-space: nowrap;
 }
+#login_button{
+	color: white;
+	background-color: #3b82f6;
+	padding: 8px 24px;
+	border-radius: 20px;
+	transition: 0.2s;
+}
+#login_button:hover{
+	background-color: #2563eb;
+	color: white;
+}
+
+/* 遮罩层样式 */
+.Mask_layer{
+	display: none;/* 默认隐藏 */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 999;
+}
+.Mask_layer.show{/* 显示遮罩层 */
+	display: block;
+}
+/* 遮罩层样式 */
+
+/* 弹窗样式 */
+.model{
+	display: none;/* 默认隐藏 */
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	background: #FFFFFF;
+	padding: 30px;
+	border-radius: 28px;
+	z-index: 1000;
+	width: 380px;
+	text-align: center;
+}
+.model.show{
+	display: block;/* 显示弹窗 */
+}
+/* 弹窗样式 */
+
+/* 登录标题 */
+.model h2{
+	background-color: transparent;
+}
+/* 登录标题 */
+
+/* 关闭按钮 */
+.close{
+	position: absolute;
+	top: 10px; right: 15px;
+	font-size: 24px;
+	cursor: pointer;
+	background-color: transparent;
+}
+/* 关闭按钮 */
+
+/* 输入框 */
+.model input{
+	width: 100%;
+	padding: 10px;
+	margin: 8px 0;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+	font-size: 16px;
+	box-sizing: border-box;
+	background-color: transparent;
+}
+/* 输入框 */
+
+/* 登录按钮 */
+.model button{
+	width: 100%;
+	padding: 10px;
+	background: #3b82f6;
+	color: #FFFFFF;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+/* 登录按钮 */
+
 .title_a a:hover{color: #3b82f6;}
 .main{
 	margin: 0 auto;
@@ -67,6 +159,11 @@
 	padding: 10px 30px;
 	border-radius: 28px;
 	border: 1px solid #121826;
+	transition: 0.2s;
+}
+.button1 a:hover{
+	background-color: #2563eb;
+	color: white;
 }
 .button2 a{
 	text-decoration: none;
@@ -76,6 +173,11 @@
 	padding: 10px 30px;
 	border-radius: 28px;
 	border: 1px solid #121826;
+	transition: 0.2s;
+}
+.button2 a:hover{
+	background-color: #f6f8ff;
+	color: black;
 }
 .index{
 	margin: 0 auto;
