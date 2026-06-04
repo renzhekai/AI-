@@ -1,0 +1,137 @@
+*{
+	margin: 0;
+	padding: 0;
+	background-color: #fcfbed;
+}
+.title_main{
+	width: 1280px;
+	height: 80px;
+	background-color: #FFFFFF;
+	margin: 0 auto;
+	padding: 25px 30px;
+	border-radius: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 100px;
+}
+.title_main img{
+	width: 300px;
+	height: auto;
+}
+.title_a{
+	background-color: #FFFFFF;
+	padding: 10px 0;
+	display: flex;
+	gap: 150px;
+}
+.title_a a{
+	text-decoration: none;
+	color: #121826;
+	font-weight: bold;
+	font-size: 20px;
+	background-color: #FFFFFF;
+}
+.title_a a:hover{color: #3b82f6;}
+.main{
+	margin: 0 auto;
+	width: 1280px;
+	padding: 50px 0;
+}
+#up{
+	font-weight: bold;
+	font-size: 75px;
+}
+#down{
+	font-weight: bold;
+	font-size: 75px;
+	color: #3b82f6;
+}
+}
+.main h3{
+	font-size: 20px;
+	color: #64748B;
+}
+.button1{
+	float: left;
+	margin: 10px 50px 10px 0;
+}
+.button2{
+	padding: 10px 0;
+}
+.button1 a{
+	text-decoration: none;
+	color: white;
+	background-color: #3b82f6;
+	display: inline-block;
+	padding: 10px 30px;
+	border-radius: 28px;
+	border: 1px solid #121826;
+}
+.button2 a{
+	text-decoration: none;
+	color: #121826;
+	background-color: white;
+	display: inline-block;
+	padding: 10px 30px;
+	border-radius: 28px;
+	border: 1px solid #121826;
+}
+.index{
+	margin: 0 auto;
+	width: 1280px;
+	height: 300px;
+	padding: 50px 0;
+}
+.buju{
+	font-weight: bold;
+	font-size: 40px;
+	width: 1280px;
+}
+.Vulnerability_Map{
+	width: 380px;
+	height: 200px;
+	border-radius: 28px;
+	border: 1px solid #121826;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	margin-top: 20px;
+}
+.all{
+	width: 1280px;
+	display: flex;
+	gap: 30px;
+}
+.title{
+	font-size: 25px;
+	font-weight: bold;
+	background-color: transparent;
+	padding: 10px 0 10px 10px;
+}
+.text{
+	font-size: 20px;
+	background-color: transparent;
+	padding: 10px 0 10px 10px;
+	color: #64748B;
+}
+.Socrates{
+	width: 380px;
+	height: 200px;
+	border-radius: 28px;
+	border: 1px solid #121826;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	margin-top: 20px;
+}
+.Study_Record{
+	width: 380px;
+	height: 200px;
+	border-radius: 28px;
+	border: 1px solid #121826;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	margin-top: 20px;
+}
