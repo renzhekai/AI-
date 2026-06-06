@@ -77,10 +77,23 @@
 	width: 380px;
 	text-align: center;
 }
+.model.show .register_button,.zhuce,.repeat_password{display: none;}
+.model button span{
+	background-color: transparent;
+	color: #FFFFFF;
+}
+/* 弹窗样式 */
+
+/* 注册页面 */
+.model.show.register .login_button{display: none;}
+.model.show.register .register_button{display: block;}
+.model.show.register .denglu{display: none;}
+.model.show.register .zhuce{display: block;}
+.model.show.register .repeat_password{display: block;}
+
 .model.show{
 	display: block;/* 显示弹窗 */
 }
-/* 弹窗样式 */
 
 /* 登录标题 */
 .model h2{
@@ -124,6 +137,76 @@
 }
 /* 登录按钮 */
 
+/* 用户面板样式 */
+.user_menu{
+	display: none;
+	position: relative;
+	background-color: transparent;
+}
+
+.avatar_button{
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	overflow: hidden;
+	transition: 0.2s;
+}
+
+.avatar_button:hover{opacity: 0.85;}
+
+.avatar_button img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.main_menu{
+	display: none;
+	position: absolute;
+	top: 50px;
+	right: 0;
+	width: 200px;
+	background-color: #FFFFFF;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	padding: 15px;
+	z-index: 100;
+}
+
+.main_menu.show{display: block;}
+
+.main_menu #menu_avatar{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.main_menu #username{
+	font-weight: bold;
+	font-size: 16px;
+	background-color: transparent;
+}
+
+#logout_button{
+	width: 100%;
+	margin-top: 10px;
+	padding: 8px;
+	border: none;
+	border-radius: 8px;
+	background-color: #fef2f2;
+	color: #ef4444;
+	cursor: pointer;
+	font-size: 14px;
+	transition: 0.2s;
+}
+/* 用户面板样式 */
+
+#logout_button:hover{background-color: #fee2e2;}
+
 .title_a a:hover{color: #3b82f6;}
 .main{
 	margin: 0 auto;
@@ -138,7 +221,6 @@
 	font-weight: bold;
 	font-size: 75px;
 	color: #3b82f6;
-}
 }
 .main h3{
 	font-size: 20px;
