@@ -7,6 +7,7 @@ from flask import Flask,render_template,request,jsonify,session
 app=Flask(__name__)
 app.secret_key = 'fauihfaiefjalieuhfkj'
 
+#导航网页
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -95,6 +96,11 @@ def check_login():
 def logout():
     session.clear()
     return jsonify({'success': True,'message':'已退出'})
+
+#漏洞地图网页
+@app.route("/map")
+def map_page():
+    return render_template("map.html")
 
 if __name__=="__main__":
     app.run(debug=True)

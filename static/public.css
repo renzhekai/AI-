@@ -1,38 +1,45 @@
 *{
 	margin: 0;
 	padding: 0;
-	background-color: #fcfbed;
 }
 .title_main{
-	width: 1280px;
+	position: relative;
+	width: 100%;
 	height: 140px;
-	background-color: #FFFFFF;
 	margin: 0 auto;
 	padding: 25px 30px;
-	border-radius: 28px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	box-sizing: border-box;
+	border-bottom: 1px solid #e2e8f0;
+	background-color: transparent;
 }
-.title_main img{
+.logo{
 	width: 300px;
 	height: auto;
 }
 .title_a{
-	background-color: #FFFFFF;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 	display: flex;
-	flex: 1;
 	align-items: center;
-	justify-content: space-around;
+	gap: 60px;
+	background-color: transparent;
+}
+.title_b{
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	background-color: transparent;
 }
 .title_a a{
 	text-decoration: none;
 	color: #121826;
 	font-weight: bold;
 	font-size: 25px;
-	background-color: #FFFFFF;
-	line-height: 1;
+	background-color: transparent;
 	white-space: nowrap;
 }
 #login_button{
@@ -144,6 +151,23 @@
 	background-color: transparent;
 }
 
+#name_button{
+	border: none;
+	display: none;
+	font-weight: bold;
+	font-size: 20px;
+	color: #121826;
+	background-color: transparent;
+	white-space: nowrap;
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+#username{
+	line-height: 40px;
+	padding:0 0 0 20px;
+}
+
 .avatar_button{
 	width: 80px;
 	height: 80px;
@@ -153,6 +177,7 @@
 	cursor: pointer;
 	overflow: hidden;
 	transition: 0.2s;
+	background-color: transparent;
 }
 
 .avatar_button:hover{opacity: 0.85;}
@@ -166,7 +191,7 @@
 .main_menu{
 	display: none;
 	position: absolute;
-	top: 50px;
+	top: 90px;
 	right: 0;
 	width: 200px;
 	background-color: #FFFFFF;
@@ -179,15 +204,24 @@
 .main_menu.show{display: block;}
 
 .main_menu #menu_avatar{
-	width: 40px;
-	height: 40px;
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
 	object-fit: cover;
 }
 
+.user_info{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #e2e8f0;
+	background-color: transparent;
+}
+
 .main_menu #username{
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 20px;
 	background-color: transparent;
 }
 
@@ -203,119 +237,6 @@
 	font-size: 14px;
 	transition: 0.2s;
 }
-/* 用户面板样式 */
-
 #logout_button:hover{background-color: #fee2e2;}
-
 .title_a a:hover{color: #3b82f6;}
-.main{
-	margin: 0 auto;
-	width: 1280px;
-	padding: 50px 0;
-}
-#up{
-	font-weight: bold;
-	font-size: 75px;
-}
-#down{
-	font-weight: bold;
-	font-size: 75px;
-	color: #3b82f6;
-}
-.main h3{
-	font-size: 20px;
-	color: #64748B;
-}
-.button1{
-	float: left;
-	margin: 10px 50px 10px 0;
-}
-.button2{
-	padding: 10px 0;
-}
-.button1 a{
-	text-decoration: none;
-	color: white;
-	background-color: #3b82f6;
-	display: inline-block;
-	padding: 10px 30px;
-	border-radius: 28px;
-	border: 1px solid #121826;
-	transition: 0.2s;
-}
-.button1 a:hover{
-	background-color: #2563eb;
-	color: white;
-}
-.button2 a{
-	text-decoration: none;
-	color: #121826;
-	background-color: white;
-	display: inline-block;
-	padding: 10px 30px;
-	border-radius: 28px;
-	border: 1px solid #121826;
-	transition: 0.2s;
-}
-.button2 a:hover{
-	background-color: #f6f8ff;
-	color: black;
-}
-.index{
-	margin: 0 auto;
-	width: 1280px;
-	height: 300px;
-	padding: 50px 0;
-}
-.buju{
-	font-weight: bold;
-	font-size: 40px;
-	width: 1280px;
-}
-.Vulnerability_Map{
-	width: 380px;
-	height: 200px;
-	border-radius: 28px;
-	border: 1px solid #121826;
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-	margin-top: 20px;
-}
-.all{
-	width: 1280px;
-	display: flex;
-	gap: 30px;
-}
-.title{
-	font-size: 25px;
-	font-weight: bold;
-	background-color: transparent;
-	padding: 10px 0 10px 10px;
-}
-.text{
-	font-size: 20px;
-	background-color: transparent;
-	padding: 10px 0 10px 10px;
-	color: #64748B;
-}
-.Socrates{
-	width: 380px;
-	height: 200px;
-	border-radius: 28px;
-	border: 1px solid #121826;
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-	margin-top: 20px;
-}
-.Study_Record{
-	width: 380px;
-	height: 200px;
-	border-radius: 28px;
-	border: 1px solid #121826;
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-	margin-top: 20px;
-}
+/* 用户面板样式 */

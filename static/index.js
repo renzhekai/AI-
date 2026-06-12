@@ -1,4 +1,5 @@
 let is_register = false
+let pending_url = ''
 //打开弹窗
 document.getElementById('login_button').addEventListener('click',function(e){
 	e.preventDefault();
@@ -11,6 +12,7 @@ document.getElementById('login_button').addEventListener('click',function(e){
 //关闭弹窗
 document.getElementById('close').addEventListener('click',function(e){
 	e.preventDefault();
+	pending_url = '';
 	document.getElementById('Mask_layer').classList.remove('show');
 	document.getElementById('login_model').classList.remove('show');
 })
@@ -42,6 +44,10 @@ document.getElementById('login_submit').addEventListener('click',async function(
 			document.getElementById('Mask_layer').classList.remove('show');
 			document.getElementById('login_model').classList.remove('show');
 			user_button(result.username);
+			if (pending_url) {
+			        window.location.href = pending_url;
+			        pending_url = '';
+			    }
 		}else{
 			document.getElementById('login_password').value='';
 			document.getElementById('login_password').focus();
@@ -60,6 +66,10 @@ document.getElementById('login_submit').addEventListener('click',async function(
 		document.getElementById('Mask_layer').classList.remove('show');
 		document.getElementById('login_model').classList.remove('show')
 		user_button(result.username);
+		if (pending_url) {
+			window.location.href = pending_url;
+			pending_url = ''
+			}
 	}else if (result.needregister){
 		if (confirm('用户不存在,是否注册')){
 			document.getElementById('login_model').classList.add('register')
@@ -86,8 +96,17 @@ window.addEventListener('DOMContentLoaded', async function() {
 function user_button(username) {
 	    document.getElementById('login_button').style.display = 'none';
 		document.getElementById('user_menu').style.display = 'block';
+		document.getElementById('name_button').style.display='inline';
+		document.getElementById('name_button').textContent= username;
 		document.getElementById('username').textContent = username;
 };
+
+//点击用户名打开用户面板
+document.getElementById('name_button').addEventListener('click',function(e){
+	e.preventDefault();
+	e.stopPropagation();
+	document.getElementById('main_menu').classList.toggle('show')
+})
 
 document.getElementById('avatar_button').addEventListener('click',function(e){
 	e.preventDefault();
@@ -107,3 +126,25 @@ document.getElementById('logout_button').addEventListener('click',async function
 	await fetch('/index/logout');
 	location.reload();
 })
+
+//跳转链接前先检查登录状态
+document.querySelectorAll('.need_login').forEach(function(link) {
+	link.addEventListener('click',async function(e) {
+		e.preventDefault();
+		const resp = await fetch('/index/check_login');
+		const data = await resp.json();
+		if (data.loggedin) {
+			const target = link.getAttribute('href');
+			if (target && target !== '#') {
+				window.location.href = target;
+			}
+		} else {
+			const target = link.getAttribute('href');
+						if (target && target !== '#') {
+							pending_url = target;
+						}
+			document.getElementById('Mask_layer').classList.add('show');
+			document.getElementById('login_model').classList.add('show');
+		}
+	});
+});

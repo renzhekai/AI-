@@ -1,0 +1,31 @@
+/* 主页面 */
+.main{
+	background-color: transparent;
+	width: 100%;
+	display: flex;
+}
+.left{
+	width: 15%;
+	display: flex;
+	flex-direction: column;
+	border-right: 1px solid #e2e8f0;
+}
+.left a{
+	height: 60px;
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	color: black;
+	font-size: 25px;
+	font-weight: bold;
+	padding: 10px 35px;
+	border-bottom: 1px solid #e2e8f0;
+}
+.left svg{
+	background-color: transparent;
+	margin-right: 10px;
+}
+.left a:hover{
+	background-color: aliceblue;
+	
+}

@@ -3,16 +3,19 @@
 	<head>
 		<meta charset="utf-8">
 		<title>ai学习网站</title>
-		<link rel="stylesheet" href="/static/style.css" />
+		<link rel="stylesheet" href="/static/index_style.css" />
+		<link rel="stylesheet" href="/static/public.css" />
 	</head>
 	<body>
 		<div class="title_main">
-			<img src="/static/img/logo.jpg" alt="logo" />
+			<img src="/static/img/logo.jpg" alt="logo" class="logo"/>
 			<div class="title_a"><!-- 导航栏 -->
-				<a href="#">首页</a>
-				<a href="#">漏洞地图</a>
-				<a href="#">苏格拉底辅导</a>
-				<a href="#">学习记录</a>
+				<a href="/">首页</a>
+				<a href="/map" class="need_login">漏洞地图</a>
+				<a href="#" class="need_login">苏格拉底辅导</a>
+				<a href="#" class="need_login">学习记录</a>
+			</div>
+			<div class="title_b">
 				<a href="#" id="login_button">登录</a>
 				<!-- 用户面板 -->
 				<div class="user_menu" id="user_menu">
@@ -20,11 +23,14 @@
 						<img src="/static/img/avatar.png" alt="头像" id="avatar_img" />
 					</button>
 					 <div class="main_menu" id="main_menu">
-						<img src="/static/img/avatar.png" alt="头像" id="menu_avatar" />
-						<span id="username"></span>
+						 <div class="user_info">
+						 	<img src="/static/img/avatar.png" alt="头像" id="menu_avatar" />
+						 	<span id="username"></span>
+						 </div>
 						<button id="logout_button">退出登录</button>
 					 </div>
 				</div>
+				<button id="name_button"></button>
 			</div>
 		</div>
 		<div class="main">
@@ -32,10 +38,10 @@
 			<p id="down">更是学会思考</p>
 			<h3>AI通过5-10道题分析你的知识漏洞，像家教一样一步步追问，引导你自己想明白。</h3>
 			<div class="button1">
-				<a href="#">立即体验</a>
+				<a href="/map" class="need_login">立即体验</a>
 			</div>
 			<div class="button2">
-				<a href="#">查看学习记录</a>
+				<a href="#" class="need_login">查看学习记录</a>
 			</div>
 			<div class="index">
 				<p class="buju">核心功能布局</p>
@@ -54,6 +60,7 @@
 				</div>
 			</div>
 		</div>
+		</div>
 		<div id="Mask_layer" class="Mask_layer"></div><!-- 遮罩层 -->
 		<div class="model" id="login_model"><!-- 登录弹窗类选择器 -->
 			<span id="close" class="close">&times;</span><!--关闭按钮 -->
@@ -67,6 +74,6 @@
 				<span class="register_button">注册</span>
 			</button><!-- 登录注册按钮 -->
 		</div>
-		<script src="/static/login.js"></script>
+		<script src="/static/index.js"></script>
 	</body>
 </html>
