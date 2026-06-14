@@ -2,10 +2,18 @@ import requests
 import openai
 import pymysql
 from flask import Flask,render_template,request,jsonify,session
-
+from werkzeug.security import generate_password_hash,check_password_hash
 
 app=Flask(__name__)
 app.secret_key = 'fauihfaiefjalieuhfkj'
+def get_sql():
+    return pymysql.connect(
+        host='localhost',
+        user='root',
+        password='ren20090920',
+        database='ai_learn',
+        charset='utf8mb4',
+    )
 
 #导航网页
 @app.route("/")
@@ -18,13 +26,7 @@ def login():
     data=request.get_json()
     username=data['username']
     password=data['password']
-    connect_login = pymysql.connect(
-        host='localhost',
-        user='root',
-        password='ren20090920',
-        database='ai_learn',
-        charset='utf8mb4',
-    )
+    connect_login = get_sql()
     cursor = connect_login.cursor()
     cursor.execute(
         "select id,username,password from users where username = %s",
@@ -40,7 +42,7 @@ def login():
             'needregister':True
         })
     user_id,db_username,db_password=user
-    if password != db_password:
+    if not check_password_hash(db_password,password):
         return jsonify({'success':False,'message':'密码错误'})
     session['user_id'] = user_id
     session['username'] = db_username
@@ -57,13 +59,7 @@ def register():
             'success':False,
             'message':'密码必须大于6个字符'
         })
-    connect_register = pymysql.connect(
-        host='localhost',
-        user='root',
-        password='ren20090920',
-        database='ai_learn',
-        charset='utf8mb4',
-    )
+    connect_register = get_sql()
     cursor = connect_register.cursor()
     #查询用户名是否已经存在
     cursor.execute('select id from users where username = %s',(username,))
@@ -72,9 +68,10 @@ def register():
         connect_register.close()
         return jsonify({'success':False,'message':'用户名已存在'})
     #在sql中加入新用户
+    hashed_password = generate_password_hash(password)
     cursor.execute(
         'insert into users (username,password) values(%s,%s)',
-        (username,password)
+        (username,hashed_password)
     )
     connect_register.commit()
     new_user_id = cursor.lastrowid
@@ -87,9 +84,24 @@ def register():
 #检测登录状态路由
 @app.route("/index/check_login")
 def check_login():
-    if 'user_id' in session:
-        return jsonify({'loggedin':True,'username':session['username']})
-    return jsonify({'loggedin': False})
+    if 'user_id' not in session:
+        return jsonify({'loggedin':False})
+    connect_check = get_sql()
+    cursor = connect_check.cursor()
+    cursor.execute(
+        "select id,username from users where id = %s",
+        (session['user_id'],)
+    )
+    user = cursor.fetchone()
+    cursor.close()
+    connect_check.close()
+
+    if user is None:
+        session.clear()
+        return jsonify({'loggedin':False})
+    user_id,username = user
+    session['username'] = username
+    return jsonify({'loggedin': True,'username':username})
 
 #退出登录
 @app.route("/index/logout")

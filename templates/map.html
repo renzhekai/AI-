@@ -7,6 +7,23 @@
 		<link rel="stylesheet" href="/static/public.css" />
 	</head>
 	<body>
+		<div id="Mask_layer" class="Mask_layer"></div><!-- 遮罩层 -->
+		<div class="window hidden" id="window">
+			<span id="close" class="close">&times;</span><!--关闭按钮 -->
+			<h2 class="grade_choose" id="grade_choose">请选择您的学习阶段</h2>
+			<div class="selecte_grade">
+				<select id="grade">
+					<option value="">选择您的学段</option>
+					<option value="小学">小学</option>
+					<option value="初中">初中</option>
+					<option value="高中">高中</option>
+				</select>
+			<select id="son_grade">
+				<option value="">请先选择您的学段</option>
+			</select>
+			</div>
+			<button class="save_grade" id="save_grade">保存</button>
+		</div>
 		<div class="title_main">
 			<img src="/static/img/logo.jpg" alt="logo" class="logo"/>
 			<div class="title_a"><!-- 导航栏 -->
@@ -66,7 +83,13 @@
 				</a>
 			</div>
 			<div class="middle">
-				<h1 class="title">知识漏洞地图部分</h1>
+				<h1 class="title">知识漏洞地图</h1>
+			</div>
+			<div class="dropdown_left">
+				<a href="#">学科 ▾</a>
+				<div class="down_menu">
+					
+				</div>
 			</div>
 		</div>
 		<script src="/static/map.js"></script>

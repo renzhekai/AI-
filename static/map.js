@@ -1,5 +1,20 @@
 let is_register = false
 let pending_url = ''
+let selected_stage = null
+let selected_grade = null
+
+//选择年级选框
+const grade_options = {
+	'小学' : ['一年级','二年级','三年级','四年级','五年级','六年级'],
+	'初中' : ['初一','初二','初三'],
+	'高中' : ['高一','高二','高三'],
+};
+const subject = {
+	'小学' : ['语文','数学','英语','科学'],
+	'初中' : ['语文','数学','英语','物理','化学','生物','政治','历史','地理'],
+	'高中' : ['语文','数学','英语','物理','化学','生物','政治','历史','地理'],
+};
+
 //打开弹窗
 document.getElementById('login_button').addEventListener('click',function(e){
 	e.preventDefault();
@@ -87,9 +102,12 @@ document.getElementById('login_submit').addEventListener('click',async function(
 window.addEventListener('DOMContentLoaded', async function() {
 	const resp = await fetch('/index/check_login');
 	const data = await resp.json();
-	if (data.loggedin){
-		user_button(data.username);
+	if (!data.loggedin){
+		window.location.href = '/';
+		return;
 	}
+	user_button(data.username);
+	check_userstudyinfo();
 });
 
 //登录按钮变为用户
@@ -148,3 +166,49 @@ document.querySelectorAll('.need_login').forEach(function(link) {
 		}
 	});
 });
+
+//年级选择弹窗部分
+document.getElementById('grade').addEventListener('change',function(){
+	const stage = document.getElementById('grade').value;
+	const son_grade = document.getElementById('son_grade');
+	if (!stage){
+		son_grade.innerHTML = '<option value="">请先选择您的学段</option>';
+		return;
+	}else{
+		son_grade.innerHTML = '';
+		const grades = grade_options[stage];
+		grades.forEach(function(grade){
+			const option = document.createElement('option');
+			option.value = grade;
+			option.textContent = grade;
+			son_grade.appendChild(option);
+		});
+		son_grade.value = grades[0];
+	}
+})
+//保存学段和年级
+document.getElementById('save_grade').addEventListener('click',function(){
+	const stage = document.getElementById('grade').value;
+	const grade = document.getElementById('son_grade').value;
+	if (!stage){
+		alert('请选择学段')
+		return;
+	}
+	if (!grade){
+		alert('请选择年级')
+		return;
+	}
+	selected_stage = stage;
+	selected_grade = grade;
+	document.getElementById('Mask_layer').classList.remove('show');
+	document.getElementById('window').classList.add('hidden')
+})
+
+//检测账号是否有年级等信息
+function check_userstudyinfo(){
+	if (!selected_stage || !selected_grade){
+		document.getElementById('Mask_layer').classList.add('show');
+		document.getElementById('window').classList.remove('hidden');
+		return;
+	}
+}
