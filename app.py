@@ -89,7 +89,7 @@ def check_login():
     connect_check = get_sql()
     cursor = connect_check.cursor()
     cursor.execute(
-        "select id,username from users where id = %s",
+        "select id,username,stage,grade from users where id = %s",
         (session['user_id'],)
     )
     user = cursor.fetchone()
@@ -99,9 +99,9 @@ def check_login():
     if user is None:
         session.clear()
         return jsonify({'loggedin':False})
-    user_id,username = user
+    user_id,username,stage,grade = user
     session['username'] = username
-    return jsonify({'loggedin': True,'username':username})
+    return jsonify({'loggedin': True,'username':username,'stage':stage,'grade':grade})
 
 #退出登录
 @app.route("/index/logout")
@@ -113,6 +113,24 @@ def logout():
 @app.route("/map")
 def map_page():
     return render_template("map.html")
+
+@app.route("/index/save_studyinfo",methods=['post'])
+def save_info():
+    if 'user_id' not in session:
+        return jsonify({'success':False,'message':' 请先登录'})
+    data = request.get_json()
+    stage = data['stage']
+    grade = data['grade']
+    connect = get_sql()
+    cursor = connect.cursor()
+    cursor.execute(
+        'update users set stage=%s,grade=%s where id=%s',
+        (stage,grade,session['user_id'])
+    )
+    connect.commit()
+    cursor.close()
+    connect.close()
+    return jsonify({'success':True,'message':'保存成功'})
 
 if __name__=="__main__":
     app.run(debug=True)

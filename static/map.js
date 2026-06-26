@@ -25,11 +25,15 @@ document.getElementById('login_button').addEventListener('click',function(e){
 });
 
 //关闭弹窗
-document.getElementById('close').addEventListener('click',function(e){
+document.getElementById('close_login').addEventListener('click',function(e){
 	e.preventDefault();
 	pending_url = '';
 	document.getElementById('Mask_layer').classList.remove('show');
 	document.getElementById('login_model').classList.remove('show');
+})
+document.getElementById('close_map').addEventListener('click',function(e){
+	e.preventDefault();
+	window.location.href='/'
 })
 
 //获取输入框中的用户名和密码
@@ -107,7 +111,7 @@ window.addEventListener('DOMContentLoaded', async function() {
 		return;
 	}
 	user_button(data.username);
-	check_userstudyinfo();
+	check_userstudyinfo(data.stage,data.grade);
 });
 
 //登录按钮变为用户
@@ -200,13 +204,18 @@ document.getElementById('save_grade').addEventListener('click',function(){
 	}
 	selected_stage = stage;
 	selected_grade = grade;
+	fetch('/index/save_studyinfo',{
+		method:'POST',
+		headers:{'Content-Type':'application/json'},
+		body:JSON.stringify({stage: stage,grade: grade})
+	})
 	document.getElementById('Mask_layer').classList.remove('show');
 	document.getElementById('window').classList.add('hidden')
 })
 
 //检测账号是否有年级等信息
-function check_userstudyinfo(){
-	if (!selected_stage || !selected_grade){
+function check_userstudyinfo(stage,grade){
+	if (!stage || !grade){
 		document.getElementById('Mask_layer').classList.add('show');
 		document.getElementById('window').classList.remove('hidden');
 		return;
